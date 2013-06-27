@@ -1,0 +1,131 @@
+html {
+  font-size: 101%;
+}
+
+body {
+  font-family: "Helvetica Neue", "Segoe UI", sans-serif;
+  font-weight: 300;
+  background: #fefefe;
+  background-image: url(../images/rauschen.png);
+  
+  user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+}
+
+h1 {
+  font-weight: 300;
+}
+
+form {
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+
+table.days {
+  border-left: 1px solid #DDD;
+}
+
+table.daynames {
+  border-bottom: 1px solid #DDD;
+}
+
+#container {
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dayname {
+  height: 14px;
+  font-weight: normal;
+  font-size: 13px;
+  text-align: left;
+  line-height: 14px;
+  color: #555;
+  padding: 8px;
+}
+
+.day {
+  position: relative;
+  height: 110px;
+  vertical-align: top;
+  border-right: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  padding: 14px 8px 8px 8px;
+  color: #222;
+  cursor: default;
+}
+
+.date {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.last-month, .next-month {
+  color: #999;
+}
+
+.day.last-month.selected, .day.next-month.selected {
+  color: #999;
+}
+
+.day.selected {
+  background-color: rgba(232, 239, 247, 0.4);
+  color: #222;
+}
+
+.day.current {
+  background-color: #e8eff7;
+  color: #0088f9;
+  opacity: 1;
+}
+
+.info {
+  margin-top: -7px;
+}
+
+.schedules {
+  position: absolute;
+  bottom: 6px;
+  left: 9px;
+  width: 130px;
+}
+
+.event {
+  display: block;
+  float: left;
+  width: 10px;
+  height: 10px;
+  border-radius: 1em;
+  background-color: #008861;
+  cursor: default;
+  margin: 1px 2px;
+}
+
+.kw {
+  position: absolute;
+  right: 8px;
+  bottom: 2px;
+  color: #999;
+}
+
+.btn-group {
+  padding-top: 12px;
+}
+
+.btn-group > .btn:first-child {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px; 
+}
+
+.btn-group > .btn:last-child {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px; 
+}
