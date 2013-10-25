@@ -54,7 +54,7 @@ table.daynames {
 
 .day {
   position: relative;
-  height: 110px;
+  height: 140px;
   vertical-align: top;
   border-right: 1px solid #DDD;
   border-bottom: 1px solid #DDD;
@@ -66,6 +66,7 @@ table.daynames {
 .date {
   font-size: 36px;
   font-weight: 300;
+  line-height: .4;
 }
 
 .last-month, .next-month {
@@ -128,4 +129,15 @@ table.daynames {
 .btn-group > .btn:last-child {
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px; 
+}
+
+a.btn.btn-default {
+  color: #222;
+}
+
+.fixed {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  padding: 0;
 }

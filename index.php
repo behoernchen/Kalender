@@ -21,12 +21,12 @@
   <section id="container">
     <h1 class="pull-left"><?= $cal->getCurrentMonthName(); ?>, <?= $cal->getCurrentYear(); ?></h1>
     
-    <div class="btn-group pull-right">
-      <a href="index.php?timestamp=<?= $cal->yearBack() ?>" class="btn"><i class="icon-fast-backward"></i></a>
-      <a href="index.php?timestamp=<?= $cal->monthBack() ?>" class="btn"><i class="icon-backward"></i></a>
-      <a href="index.php" class="btn">Heute</a>
-      <a href="index.php?timestamp=<?= $cal->monthForward() ?>" class="btn"><i class="icon-forward"></i></a>
-      <a href="index.php?timestamp=<?= $cal->yearForward() ?>" class="btn"><i class="icon-fast-forward"></i></a>
+    <div class="btn-group fixed">
+      <a href="index.php?timestamp=<?= $cal->yearBack() ?>" class="btn btn-default"><i class="glyphicon glyphicon-backward"></i></a>
+      <a href="index.php?timestamp=<?= $cal->monthBack() ?>" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i></a>
+      <a href="index.php" class="btn btn-default">Heute</a>
+      <a href="index.php?timestamp=<?= $cal->monthForward() ?>" class="btn btn-default"><i class="glyphicon glyphicon-chevron-right"></i></a>
+      <a href="index.php?timestamp=<?= $cal->yearForward() ?>" class="btn btn-default"><i class="glyphicon glyphicon-forward"></i></a>
     </div>
 
     <table cellpadding="0" cellspacing="0" class="daynames">
@@ -70,26 +70,33 @@
       </tbody>
     </table><br />
 
-    <div id="newEvent" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="newEvent" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Neuer Termin</h3>
-      </div>
+    <div id="newEvent" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="newEvent" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Neuer Termin</h4>
+          </div>
 
-      <form action="index.php" method="post" id="event-form">
-        <div class="modal-body">
-          <label for="terminname">Termin:</label>
-          <input type="text" name="event_name" id="terminname" class="span6" />
+          <form action="index.php" method="post" id="event-form">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="terminname">Termin:</label>
+                <input type="text" name="event_name" id="terminname" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="date-input">Datum:</label>
+                <input type="text" name="date_input" id="date-input" class="form-control" value="" />
+              </div>
+            </div>
 
-          <label for="date-input">Datum:</label>
-          <input type="text" name="date_input" id="date-input" class="span6" value="" />
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
-          <input type="submit" value="Speichern" class="btn btn-primary" />
+            <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
+              <input type="submit" value="Speichern" class="btn btn-success" />
+            </div>
           </form>
         </div>
+      </div>
     </div>
   </section>
 </body>
