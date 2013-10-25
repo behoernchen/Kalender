@@ -1,82 +1,70 @@
-var selectedDay;
+var makeAJAXLinks, makeDaysClickable, makeFormAsync, selectedDay;
 
-$(document).ready(function() {
-  console.log("Document ready fired...");
-  // AJAX Links...
-  makeAJAXLinks();
+selectedDay = void 0;
 
-  // Kalendertage auswaehlbar machen...
-  makeDaysClickable();
-
-  // Eventanzeige...
-  $('.event').tooltip();
-
-  // AJAX Formular...
-  makeFormAsync();
-});
-
-
-function makeAJAXLinks() {
-  $('a').bind('click',function(event) {
+makeAJAXLinks = function() {
+  return $("a").bind("click", function(event) {
+    var body, url;
     event.preventDefault();
-    var url  = this.href;
-    var body = $('body');
-
-    $('#container').fadeOut(200, function() {
-      body.load(url + ' #container', function() {
+    url = this.href;
+    body = $("body");
+    return $("#container").fadeOut(200, function() {
+      return body.load(url + " #container", function() {
         makeAJAXLinks();
         makeDaysClickable();
         makeFormAsync();
-        $('.event').tooltip();
-        // $('#container').fadeIn(1200);
+        return $(".event").tooltip();
       });
     });
   });
-}
+};
 
-
-function makeDaysClickable() {
-  $('.day').bind('click', function(event) {
-    if (selectedDay != undefined) {
-      selectedDay.removeClass('selected');  
+makeDaysClickable = function() {
+  $(".day").bind("click", function(event) {
+    if (selectedDay !== undefined) {
+      selectedDay.removeClass("selected");
     }
-    
     selectedDay = $(this);
-    selectedDay.addClass('selected');
+    return selectedDay.addClass("selected");
   });
-
-  $('.day').bind('dblclick', function(event) {
-    $('#date-input').val($(this).attr('data-date'));
-    $('#newEvent').modal();
+  return $(".day").bind("dblclick", function(event) {
+    $("#date-input").val($(this).attr("data-date"));
+    return $("#newEvent").modal();
   });
-}
+};
 
-
-function makeFormAsync() {
-  $("#event-form").submit(function(event) {
+makeFormAsync = function() {
+  return $("#event-form").submit(function(event) {
+    var date, form, name, posting, url;
     event.preventDefault();
-   
-    var form = $(this),
-        name = form.find('input[name="event_name"]').val(),
-        date = form.find('input[name="date_input"]').val(),
-        url  = form.attr('action');
-   
-    var posting = $.post(url, { 'event_name': name, 'date_input': date });
-   
-    posting.done(function(data) {
-      if (data == '1') {
-        day = $(document).find('[data-date="' + date + '"]');
-        if (day.find('.schedules').length) {
-          day.find('.schedules').append('<a href="#" data-toggle="tooltip" title="" class="event" data-original-title="' + name + '"></a>');
+    form = $(this);
+    name = form.find("input[name=\"event_name\"]").val();
+    date = form.find("input[name=\"date_input\"]").val();
+    url = form.attr("action");
+    posting = $.post(url, {
+      event_name: name,
+      date_input: date
+    });
+    return posting.done(function(data) {
+      var day;
+      if (data === "1") {
+        day = $(document).find("[data-date=\"" + date + "\"]");
+        if (day.find(".schedules").length) {
+          day.find(".schedules").append("<a href=\"#\" data-toggle=\"tooltip\" title=\"\" class=\"event\" data-original-title=\"" + name + "\"></a>");
         } else {
-          day.append('<div class="schedules"><a href="#" data-toggle="tooltip" title="" class="event" data-original-title="' + name + '"></a></div>')
+          day.append("<div class=\"schedules\"><a href=\"#\" data-toggle=\"tooltip\" title=\"\" class=\"event\" data-original-title=\"" + name + "\"></a></div>");
         }
       }
-      form.find('input[name="event_name"]').val("");
-      $('#newEvent').modal('hide');
-
-      // Eventanzeige...
-      $('.event').tooltip();
+      form.find("input[name=\"event_name\"]").val("");
+      $("#newEvent").modal("hide");
+      return $(".event").tooltip();
     });
   });
-}
+};
+
+$(document).ready(function() {
+  makeAJAXLinks();
+  makeDaysClickable();
+  $(".event").tooltip();
+  return makeFormAsync();
+});
